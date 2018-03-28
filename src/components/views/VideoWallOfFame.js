@@ -87,6 +87,12 @@ class VideoWallOfFame extends Component {
       })
     })
 
+    if (!index) {
+      index = 0
+      previous = mediaList[1][0].week
+      this.state.week = mediaList[0][0].week
+    }
+
     this.setState({
       media: mediaList,
       currentMedia: this.state.wall ? mediaList[index].filter((video) => video.wall === this.state.wall) : mediaList[index],
@@ -145,11 +151,11 @@ class VideoWallOfFame extends Component {
         **/}
 
         <div className="weekNav">
-          <div className={next ? "next-prev-button" : ''}>
+          <div className={next ? "next-prev-button" : 'set-width'}>
             {next && (<Link to={next} style={{color: 'white', textDecoration: 'none'}}>Next week</Link>)}
           </div>
           <div style={{fontSize: '28px', fontWeight: '700', color: '#2c0d54'}}>{"WEEK " + date[0] + ' - ' + date[2]}</div>
-          <div className={previous ? "next-prev-button" : ''}>
+          <div className={previous ? "next-prev-button" : 'set-width'}>
             {previous && (<Link to={previous} style={{color: 'white', textDecoration: 'none'}}>Previous week</Link>)}
           </div>
         </div>
@@ -204,6 +210,7 @@ class VideoWallOfFame extends Component {
                           )}
                           muted={true}
                           autoPlay
+                          showControls={false}
                         />
                       </div>
                     {/* </OverlayTrigger> */}
